@@ -24,5 +24,7 @@ jobs:
         python-version: 3.12
     - name: Cloudflare WARP for Github Actions
       uses: sebst/actions-warp@v1
+      with:
+        tos: YES
     - name: done
       run: exit
