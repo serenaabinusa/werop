@@ -24,7 +24,6 @@ jobs:
         python-version: 3.12
     - name: Install
       run: |
-        cd wkwk
         python -m pip install --upgrade pip wheel setuptools
         sudo apt install cloudflare-warp
         warp-cli registration new
