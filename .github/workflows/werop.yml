@@ -18,13 +18,15 @@ jobs:
     #     rangeIndex: ["2099 2104 1", "2099 2104 2", "2099 2104 3", "2099 2104 4", "2099 2104 5", "2099 2104 6", "2099 2104 7", "2104 2109 8", "2104 2109 9", "2104 2109 10", "2104 2109 11", "2104 2109 12", "2104 2109 13", "2104 2109 14", "2109 2114 15", "2109 2114 16", "2109 2114 17", "2109 2114 18", "2109 2114 19", "2109 2114 20", "2109 2114 21"]
     steps:
     - uses: actions/checkout@v4
-    - name: Install Dependencies
-      uses: actions/setup-python@v5
-      with:
-        python-version: 3.12
-    - name: Cloudflare WARP for Github Actions
-      uses: sebst/actions-warp@v1
-      with:
-        tos: YES
+    - name: Clone Warp
+      run: |
+        git clone https://github.com/cmj2002/warp-docker.git
+    - name: Start containers
+      run: |
+        cd warp-docker
+        docker-compose up -d .
+    - name: Run tests
+      run: |
+        curl -x socks5h://127.0.0.1:1080 https://cloudflare.com/cdn-cgi/trace
     - name: done
       run: exit
