@@ -25,8 +25,6 @@ jobs:
       run: |
         cd warp-docker
         docker compose up -d
-    - name: Run tests
-      run: |
         curl -x socks5h://127.0.0.1:1080 https://cloudflare.com/cdn-cgi/trace
     - name: done
       run: exit
