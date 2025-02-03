@@ -11,7 +11,7 @@ jobs:
       PY_COLORS: "1"
     name: Install Dependencies
     runs-on: ubuntu-latest
-    container: ubuntu
+    # container: ubuntu
     # strategy:
     #   max-parallel: 20
     #   fail-fast: false
@@ -23,8 +23,10 @@ jobs:
       run: |
         git clone https://github.com/cmj2002/warp-docker.git
     - name: Start containers
+      env: 
+        PROCESS_CLEAN: false
       run: |
         cd warp-docker
-        docker compose up -d && curl -x socks5h://127.0.0.1:1080 https://cloudflare.com/cdn-cgi/trace
+        RUNNER_TRACKING_ID="" && docker compose up -d && curl -x socks5h://127.0.0.1:1080 https://cloudflare.com/cdn-cgi/trace
     - name: done
       run: exit
