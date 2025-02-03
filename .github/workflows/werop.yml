@@ -23,10 +23,11 @@ jobs:
       run: |
         git clone https://github.com/cmj2002/warp-docker.git
     - name: Start containers
-      env: 
-        PROCESS_CLEAN: false
       run: |
         cd warp-docker
-        RUNNER_TRACKING_ID="" && docker compose up -d && curl -x socks5h://127.0.0.1:1080 https://cloudflare.com/cdn-cgi/trace
+        docker compose up -d
+        docker images
+        docker ps
+        curl --socks5-hostname 127.0.0.1:1080 https://cloudflare.com/cdn-cgi/trace
     - name: done
       run: exit
