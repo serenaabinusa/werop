@@ -28,6 +28,6 @@ jobs:
         docker compose up -d
         docker images
         docker ps
-        curl --socks5-hostname 127.0.0.1:1080 https://cloudflare.com/cdn-cgi/trace
+        curl --socks5-hostname 0.0.0.0:1080 https://cloudflare.com/cdn-cgi/trace
     - name: done
       run: exit
